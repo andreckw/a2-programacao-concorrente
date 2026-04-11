@@ -9,5 +9,13 @@ public class EsteiraCarro extends Thread {
     @Override
     public void run() {
         super.run();
+        // TODO fazer para 
+    }
+
+    public void addCarro(Carro carro) {
+        if (carros.size() >= 40) {
+            return;
+        }
+        carros.add(carro);
     }
 }

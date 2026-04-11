@@ -1,14 +1,13 @@
 package classes;
 
-public class Funcionario extends Thread {
+public class Funcionario {
     protected int id;
 
     public Funcionario(int id) {
         this.id = id;
     }
 
-    @Override
-    public void run() {
-        // TODO fazer coisa aqui :b
+    public Carro construirCarro() {
+        return new Carro(this);
     }
 }
