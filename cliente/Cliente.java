@@ -18,7 +18,7 @@ public class Cliente implements Runnable {
     private final int[] lojaPorts;
     private final Random random = new Random();
     private static final int MAX_COMPRAS = 5;
-    private static final int NUM_LOJAS = 3;
+    private static int NUM_LOJAS = 3;
 
     public Cliente(int id, String[] lojaHosts, int[] lojaPorts) {
         this.id = id;
@@ -26,6 +26,7 @@ public class Cliente implements Runnable {
         this.mutexGaragem = new Semaphore(1);
         this.lojaHosts = lojaHosts;
         this.lojaPorts = lojaPorts;
+        Cliente.NUM_LOJAS = lojaHosts.length;
     }
 
     @Override

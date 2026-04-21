@@ -10,6 +10,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ServidorLoja extends UnicastRemoteObject implements LojaRemota {
     private static final long serialVersionUID = 1L;
@@ -89,13 +92,15 @@ public class ServidorLoja extends UnicastRemoteObject implements LojaRemota {
     }
 
     public static void main(String[] args) throws Exception {
-        if (args.length < 3) {
-            System.out.println("Uso: java loja.ServidorLoja <lojaId> <fabricaHost> <fabricaPorta>");
-            return;
+        List<String> argsClone = new ArrayList<>(Arrays.asList(args));
+        if (argsClone.size() < 3) {
+            argsClone.add("1");
+            argsClone.add("localhost");
+            argsClone.add("9001");
         }
-        int lojaId = Integer.parseInt(args[0]);
-        String fabricaHost = args[1];
-        int fabricaPorta = Integer.parseInt(args[2]);
+        int lojaId = Integer.parseInt(argsClone.get(0));
+        String fabricaHost = argsClone.get(1);
+        int fabricaPorta = Integer.parseInt(argsClone.get(2));
         int rmiPorta = 1099 + lojaId;
 
         ServidorLoja loja = new ServidorLoja(lojaId, fabricaHost, fabricaPorta);

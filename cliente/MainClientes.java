@@ -2,7 +2,7 @@ package cliente;
 
 public class MainClientes {
     private static final int NUM_CLIENTES = 20;
-    private static final int NUM_LOJAS = 3;
+    private static final int NUM_LOJAS = 1;
 
     public static void main(String[] args) throws Exception {
         String[] lojaHosts = new String[NUM_LOJAS];
@@ -10,7 +10,8 @@ public class MainClientes {
 
         for (int i = 0; i < NUM_LOJAS; i++) {
             lojaHosts[i] = args.length > i ? args[i] : "localhost";
-            lojaPorts[i] = 1100 + (i + 1);
+            lojaPorts[i] = 1099 + (i + 1);
+            System.out.println(lojaHosts[i] + lojaPorts[i]);
         }
 
         Thread[] threads = new Thread[NUM_CLIENTES];
