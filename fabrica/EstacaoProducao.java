@@ -2,6 +2,7 @@ package fabrica;
 
 import common.EsteiraCircular;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class EstacaoProducao {
     private final int id;
@@ -11,7 +12,7 @@ public class EstacaoProducao {
     private static final int NUM_FUNCIONARIOS = 5;
     private static final int CAPACIDADE_ESTEIRA = 40;
 
-    public EstacaoProducao(int id, EstoquePecas estoque, int contadorVeiculos) {
+    public EstacaoProducao(int id, EstoquePecas estoque, AtomicInteger contadorVeiculos) {
         this.id = id;
         this.esteira = new EsteiraCircular(CAPACIDADE_ESTEIRA);
 
@@ -28,9 +29,8 @@ public class EstacaoProducao {
         for (int i = 0; i < NUM_FUNCIONARIOS; i++) {
             Ferramenta esquerda = ferramentas[i];
             Ferramenta direita = ferramentas[(i + 1) % NUM_FUNCIONARIOS];
-            contadorVeiculos++;
             funcionarios[i] = new Funcionario(i, id, esquerda, direita,
-                    estoque, esteira, contadorVeiculos);
+                    estoque, esteira, contadorVeiculos, semaforoEstacao);
             threads[i] = new Thread(funcionarios[i], "Estacao-" + id + "-Func-" + i);
         }
     }
