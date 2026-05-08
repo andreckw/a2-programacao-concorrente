@@ -1,10 +1,8 @@
 package fabrica;
 
 import common.EsteiraCircular;
-
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ServidorFabrica {
     private static final int PORTA_BASE = 9000;
@@ -15,7 +13,7 @@ public class ServidorFabrica {
     private static final int NUM_LOJAS = 3;
 
     public static void main(String[] args) throws Exception {
-        AtomicInteger contadorVeiculos = new AtomicInteger(0);
+        int contadorVeiculos = 0;
         EstoquePecas estoque = new EstoquePecas(CAPACIDADE_ESTOQUE, CAPACIDADE_ESTEIRA_PECAS);
         EsteiraCircular esteiraCentral = new EsteiraCircular(CAPACIDADE_ESTEIRA_CENTRAL);
 
