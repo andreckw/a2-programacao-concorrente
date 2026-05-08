@@ -1,10 +1,7 @@
 package fabrica;
 
-import common.Veiculo;
 import common.EsteiraCircular;
-
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
+import common.Veiculo;
 
 public class Funcionario implements Runnable {
     private final int id;
@@ -13,15 +10,14 @@ public class Funcionario implements Runnable {
     private final Ferramenta ferramentaDireita;
     private final EstoquePecas estoque;
     private final EsteiraCircular esteiraEstacao;
-    private final AtomicInteger contadorVeiculos;
-    private final Semaphore semaforo;
+    private final ContadorVeiculo contadorVeiculos;
 
     private static final String[] CORES = {"RED", "GREEN", "BLUE"};
     private static final String[] TIPOS = {"SUV", "SEDAN"};
 
     public Funcionario(int id, int estacaoId, Ferramenta esquerda, Ferramenta direita,
                        EstoquePecas estoque, EsteiraCircular esteira,
-                       AtomicInteger contador, Semaphore semaforo) {
+                       ContadorVeiculo contador) {
         this.id = id;
         this.estacaoId = estacaoId;
         this.ferramentaEsquerda = esquerda;
@@ -29,7 +25,6 @@ public class Funcionario implements Runnable {
         this.estoque = estoque;
         this.esteiraEstacao = esteira;
         this.contadorVeiculos = contador;
-        this.semaforo = semaforo;
     }
 
     @Override
@@ -43,7 +38,7 @@ public class Funcionario implements Runnable {
 
                 pegarFerramentas();
 
-                int veiculoId = contadorVeiculos.incrementAndGet();
+                int veiculoId = contadorVeiculos.incrementar();
                 String cor = CORES[(veiculoId - 1) % CORES.length];
                 String tipo = TIPOS[(veiculoId - 1) % TIPOS.length];
 

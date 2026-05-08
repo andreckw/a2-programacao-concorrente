@@ -15,7 +15,7 @@ public class ServidorFabrica {
     private static final int NUM_LOJAS = 3;
 
     public static void main(String[] args) throws Exception {
-        AtomicInteger contadorVeiculos = new AtomicInteger(0);
+        ContadorVeiculo contadorVeiculos = new ContadorVeiculo();
         EstoquePecas estoque = new EstoquePecas(CAPACIDADE_ESTOQUE, CAPACIDADE_ESTEIRA_PECAS);
         EsteiraCircular esteiraCentral = new EsteiraCircular(CAPACIDADE_ESTEIRA_CENTRAL);
 
