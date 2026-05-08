@@ -2,7 +2,7 @@ package cliente;
 
 public class MainClientes {
     private static final int NUM_CLIENTES = 20;
-    private static final int NUM_LOJAS = 1;
+    private static final int NUM_LOJAS = 3;
 
     public static void main(String[] args) throws Exception {
         String[] lojaHosts = new String[NUM_LOJAS];
